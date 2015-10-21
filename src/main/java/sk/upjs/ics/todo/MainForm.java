@@ -22,8 +22,7 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-        List<Uloha> ulohy = mysqlUlohaDao.dajVsetky();        
-        ulohyList.setListData(ulohy.toArray());
+        refresh();
     }
 
     /**
@@ -107,9 +106,13 @@ public class MainForm extends javax.swing.JFrame {
         
         mysqlUlohaDao.pridat(uloha);
         
+        refresh();
+    }//GEN-LAST:event_pridatButtonActionPerformed
+
+    private void refresh() {
         List<Uloha> ulohy = mysqlUlohaDao.dajVsetky();
         ulohyList.setListData(ulohy.toArray());
-    }//GEN-LAST:event_pridatButtonActionPerformed
+    }
 
     private void odstranitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odstranitButtonActionPerformed
         // vybrat oznacenu polozku a zmazat ju
