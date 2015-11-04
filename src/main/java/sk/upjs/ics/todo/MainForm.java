@@ -15,13 +15,13 @@ import java.util.List;
 public class MainForm extends javax.swing.JFrame {
     
     private MySqlUlohaDao mysqlUlohaDao = new MySqlUlohaDao();
-    private PamatovyUlohaDao pamatovyUlohaDao = new PamatovyUlohaDao();
+    //private PamatovyUlohaDao pamatovyUlohaDao = new PamatovyUlohaDao();
     
     /**
      * Creates new form MainForm
      */
     public MainForm() {
-        initComponents();
+        initComponents();       
         refresh();
     }
 
@@ -43,11 +43,7 @@ public class MainForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ulohyList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        ulohyList.setCellRenderer(new UlohaListCellRenderer());
         jScrollPane1.setViewportView(ulohyList);
 
         pridatButton.setText("Pridať");
@@ -115,9 +111,9 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void odstranitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_odstranitButtonActionPerformed
-        // vybrat oznacenu polozku a zmazat ju
-        Uloha uloha = (Uloha) ulohyList.getSelectedValue();       
-        pamatovyUlohaDao.odstranit(uloha);
+         Uloha uloha = (Uloha) ulohyList.getSelectedValue();
+         mysqlUlohaDao.odstranit(uloha);
+         refresh();
     }//GEN-LAST:event_odstranitButtonActionPerformed
 
     /**
